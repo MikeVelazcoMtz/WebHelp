@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+  session_start();
 	if(!empty($_SESSION['name']))
   {
 		$name = $_SESSION["name"];
@@ -9,15 +9,12 @@
 	}
 	function alert($name)
 	{
-    if($_SESSION['welcome'] == FALSE){
+    if($_SESSION['welcome'] == FALSE)
+    {
       if($name == 'Usuario Invalido')
-      {
         echo "alert('Usuario Invalido. Redireccionando');\nlocation.href = '../index.html';";
-      }
       else
-      {
         echo "alert('Bienvenido ".$name.".');";
-      }
       $_SESSION["welcome"] = TRUE;
     }
 		
@@ -32,24 +29,24 @@
     <title>WebHelp - Bienvenido <?php echo $name; ?> </title>
     <!-- ARCHIVOS NECESARIOS PARA UTILIZAR FOUNDATION -->
     <!--
-  <script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>  -->
+    <script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>  -->
     <link href="../css/form.css" rel="stylesheet" />
     <link href="../css/foundation.min.css" rel="stylesheet" />
     <link href="../css/app.css" rel="stylesheet" />
     <style type="text/css">
-  body{
-  	background-color: #CCC
-  }
-  input::-webkit-input-placeholder {
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-weight: bold;
-  }
-  input:-moz-placeholder {
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-weight: bold;
-  }
-</style> 
-<script src="../js/modernizr.foundation.js"></script>
+      body{
+      	background-color: #CCC
+      }
+      input::-webkit-input-placeholder {
+        text-shadow: black 0.1em 0.1em 0.2em;
+        font-weight: bold;
+      }
+      input:-moz-placeholder {
+        text-shadow: black 0.1em 0.1em 0.2em;
+        font-weight: bold;
+      }
+    </style> 
+    <script src="../js/modernizr.foundation.js"></script>
     <script src="../js/jquery.js"></script>    
     <script src="../js/foundation.min.js"></script>
     <script src="../js/app.js"></script>
@@ -130,27 +127,12 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
           var num = 0;
-        <?php 
-			alert($name);
-		?>
+          /*jshint ignore:start*/
+            <?php 
+        			alert($name);
+        		?>
+          /*jshint ignore:end*/
         });        
     </script>
   </body>
-</html>
-<!DOCTYPE html>
-	<head>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<title>WebHelp - Bienvenido <?php echo $name; ?> </title>
-			<link rel="stylesheet" href="">
-			<script src='../js/jquery.js'></script>
-			<script>
-				$(document).ready(function(){
-					
-				});
-			</script>
-	</head>
-	<body>
-		
-	</body>
 </html>

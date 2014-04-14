@@ -5,11 +5,7 @@
 	$result = $conexion->delUser($id);
 	
 	if (is_numeric($result)) 
-	{
 		echo $result;
-	}
 	else
-	{
 		echo 0;
-	}
 ?>

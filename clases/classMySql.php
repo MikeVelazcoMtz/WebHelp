@@ -48,9 +48,7 @@
 				return $result;
 			}
 			else
-			{
 				return 2;
-			}
 		}
 		
 		function login($user,$pass)
@@ -58,7 +56,7 @@
 			$connect = $this->conecta();
 			$user = mysqli_real_escape_string($connect, $user);
 			$pass = mysqli_real_escape_string($connect, $pass);
-			$qry = "SELECT ";
+			$qry  = "SELECT ";
 			$qry .= "	usuarioid, ";
 			$qry .= "	tipo_usuario, ";
 			$qry .= "	CONCAT(IF(NOT ISNULL(nombre),nombre,' '),' ',IF(NOT ISNULL(ap_pat),ap_pat,' '),' ',IF(NOT ISNULL(ap_mat),ap_mat,' ')) AS name ";
@@ -80,9 +78,7 @@
 				
 			}
 			else
-			{
-				return 0;
-			}		
+				return 0;	
 		}
 
 		function getUsersList()
@@ -92,9 +88,8 @@
 			$result = mysqli_query($connect,$query);
 			$usersList = array();
 			while ($data = mysqli_fetch_array($result)) 
-			{
 				array_push($usersList, $data[0]);
-			}
+			
 			return $usersList;
 		}
 
@@ -106,13 +101,9 @@
 			$connect = $this->conecta();
 			$result = mysqli_query($connect,$query);
 			if($result)
-			{	
 				echo 1;
-			}
 			else
-			{
 				echo 0;
-			}
 		}
 		function readComment($commentId,$user)
 		{
@@ -120,13 +111,9 @@
 			$query = "UPDATE registro SET estatus = 1 WHERE regid = '". $commentId ."';";
 			$result = mysqli_query($connect,$query);
 			if($result)
-			{	
 				echo "Registro Satisfactorio";
-			}
 			else
-			{
 				echo "El registro del nuevo comentario ha fallado.";
-			}
 		}
 		function unreadComment($commentId,$user)
 		{
@@ -134,13 +121,9 @@
 			$query = "UPDATE registro SET estatus = 0 WHERE regid = '". $commentId ."';";
 			$result = mysqli_query($connect,$query);
 			if($result)
-			{	
 				echo "Registro Satisfactorio";
-			}
 			else
-			{
 				echo "El registro del nuevo comentario ha fallado.";
-			}
 		}
 
 		function cancelComment($commentId,$user)
@@ -149,13 +132,9 @@
 			$query = "UPDATE registro SET estatus = 2, usuario_can = '". $user ."', fecha_can = NOW()   WHERE regid = '". $commentId ."';";
 			$result = mysqli_query($connect,$query);
 			if($result)
-			{	
 				echo 1;
-			}
 			else
-			{
 				echo 0;
-			}
 		}
 		
 		function dropComment($commentId)
@@ -165,13 +144,9 @@
 			$query = "DELETE FROM registro  WHERE regid = '". $commentId ."';";
 			$result = mysqli_query($connect,$query);
 			if($result)
-			{	
 				echo 1;
-			}
 			else
-			{
 				echo 0;
-			}
 		}
 
 		function getComments($userid=false)
@@ -205,9 +180,7 @@
 				return $dataArray;
 			}
 			else
-			{
 				return 0;
-			}	
 		}
 
 		function logout()

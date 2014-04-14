@@ -45,7 +45,7 @@
 
   function generateSelect($status)
   {
-    echo "<select class='custom dropdown'>";
+    echo "<select>";
       switch ($status) 
       {
         case 0:
@@ -85,7 +85,6 @@
     echo "</select>";
   }
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -95,7 +94,7 @@
     <title>Bienvenido a WebHelp</title>
     <!-- ARCHIVOS NECESARIOS PARA UTILIZAR FOUNDATION -->
     <!--
-  <script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>  -->
+    <script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>  -->
     <link href="../css/form.css" rel="stylesheet" />
     <link href="../css/foundation.min.css" rel="stylesheet" />
     <link href="../css/app.css" rel="stylesheet" />
@@ -104,20 +103,19 @@
 		  body{
 		  	background-color: #CCC
 		  }
-	</style>
-
-	<script src="../js/modernizr.foundation.js"></script>
+	  </style>
+	  <script src="../js/modernizr.foundation.js"></script>
     <script src="../js/jquery.js"></script>    
     <script src="../js/foundation.min.js"></script>
     <script src="../js/app.js"></script>
-    <script src="../js/jquery.customforms.js" type="text/javascript"></script>
-    <script src="../js/responsive-tables.js" type="text/javascript" ></script>
+    <script src="../js/jquery.customforms.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/responsive-tables.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
     <nav class="top-bar">
       <ul>
         <li class="name">
-          <h1><a href="#">WebHelp: tu plataforma de Ayuda</a></h1>
+          <h1><a href="#">WebHelp, tu plataforma de Ayuda</a></h1>
         </li>
         <li class="toggle-topbar"><br />
         </li>
@@ -149,22 +147,24 @@
         <div id="result" class="twelve columns panel">
           <h1>Comentarios Registrados</h1>
           <hr />
-        	<table class="responsive">
-    				<thead>
-    					<tr>
-    						<th>Usuario</th>
-    						<th>Fecha</th>
-    						<th>Comentario</th>
-    						<th>Estado</th>
-    					</tr>
-    				</thead>
-      			<tbody>
-      				<?php 
-                if (count($dataArray))
-                  inboxTable($dataArray);
-              ?>
-      			</tbody>	
-    		  </table>
+          <form action="." class="custom">         
+          	<table class="responsive">
+      				<thead>
+      					<tr>
+      						<th>Usuario</th>
+      						<th>Fecha</th>
+      						<th>Comentario</th>
+      						<th>Estado</th>
+      					</tr>
+      				</thead>
+        			<tbody>
+        				<?php 
+                  if (count($dataArray))
+                    inboxTable($dataArray);
+                ?>
+        			</tbody>	
+      		  </table>
+          </form>
 		    </div>
       </div>
     <footer>

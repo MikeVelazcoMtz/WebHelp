@@ -5,8 +5,9 @@
 
   function createArray($data)
   {// crea un array javascript a partir de un array PHP
-    echo "\n\t\t\tvar usersArray = new Array();\n";
-    for ($i=0; $i < count($data) ; $i++) { 
+    echo "\n\t\t\tvar usersArray = [];\n";
+    for ($i=0; $i < count($data) ; $i++)
+    { 
       echo "\t\t\tusersArray[". $i ."] = '". $data[$i] ."';\n";
     }
    
@@ -21,23 +22,24 @@
     <title>Bienvenido a WebHelp</title>
     <!-- ARCHIVOS NECESARIOS PARA UTILIZAR FOUNDATION -->
     <!--
-  <script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>  -->
+    <script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>  -->
     <link href="../css/form.css" rel="stylesheet" />
     <link href="../css/foundation.min.css" rel="stylesheet" />
     <link href="../css/app.css" rel="stylesheet" />
     <style type="text/css">
-  body{
-  	background-color: #CCC
-  }
-  input::-webkit-input-placeholder {
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-weight: bold;
-  }
-  input:-moz-placeholder {
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-weight: bold;
-  }
-</style> <script src="../js/modernizr.foundation.js"></script>
+      body{
+      	background-color: #CCC
+      }
+      input::-webkit-input-placeholder {
+        text-shadow: black 0.1em 0.1em 0.2em;
+        font-weight: bold;
+      }
+      input:-moz-placeholder {
+        text-shadow: black 0.1em 0.1em 0.2em;
+        font-weight: bold;
+      }
+    </style> 
+    <script src="../js/modernizr.foundation.js"></script>
     <script src="../js/jquery.js"></script>    
     <script src="../js/foundation.min.js"></script>
     <script src="../js/app.js"></script>
@@ -47,7 +49,7 @@
     <nav class="top-bar">
       <ul>
         <li class="name">
-          <h1><a href="#">WebHelp</a></h1>
+          <h1><a href="#">WebHelp, tu plataforma de ayuda</a></h1>
         </li>
         <li class="toggle-topbar"><br />
         </li>
@@ -170,42 +172,39 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
           var num = 0;
-
-        	
-          $('#nick').bind("keyup",function(){
+          /* jshint ignore:start */
             <?php 
-            createArray($data);
+              createArray($data);
             ?>
-            console.log($(this).val());
-            for (var i = usersArray.length - 1; i >= 0; i--) 
+          /* jshint ignore:end */
+          $('#nick').bind("keyup",function(){
+            validate = usersArray.indexOf( $(this).val().trim() );
+            if(validate === -1)
             {
-              if (usersArray[i]== $(this).val().trim()) 
-              {
-                $("label:contains('Nickname')>span").text("Usuario ya registrado!!!");
-                $(this).css('background-color','red');
-                
-              }else
-              {
-                $("label:contains('Nickname')>span").text("*");
-                $(this).css('background-color','white'); 
-              }
-            };
+              $("label:contains('Nickname')>span").text("*");
+              $(this).css('background-color','white');
+            }
+            else
+            {
+              $("label:contains('Nickname')>span").text("Usuario ya registrado!!!");
+              $(this).css('background-color','red');
+            }
           });
 
           $("#reg").click(function(){// Registro de Usuarios
-            num =0;
-        		$(".obligado").each(function(index) {
-				      if($(this).val().length == 0)
+            num = 0;
+            $(".obligado").each(function(index) {
+              if($(this).val().length === 0)
               {
-				  	   $(this).css('background-color','red');
-               num++;
-				      }
-				    });
+                 $(this).css('background-color','red');
+                 num++;
+              }
+            });
             if(num > 0){
               alert("Campos Vacios. Revise su Formulario.");
             }else{
               $.post("regUser.php",$('form').serialize(),function(info){
-                  if(info == 0)
+                  if(parseInt(info, 10) === 0)
                   {
                     alert("Ha sucedido un Error.");
                   }
@@ -216,7 +215,7 @@
                   }
               });
             }
-        	});
+          });
 
 
           $("#conf").bind('blur',function(){// Validacion de Contrasenia
@@ -250,8 +249,6 @@
                 $(this).css('background-color','red');
             }
           });
-
-
         });
         
     </script>

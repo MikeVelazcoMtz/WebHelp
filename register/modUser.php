@@ -15,7 +15,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta content="width=device-width" name="viewport" />
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Bienvenido a WebHelp</title>
+    <title>WebHelp - Gestion de Usuarios</title>
     <!-- ARCHIVOS NECESARIOS PARA UTILIZAR FOUNDATION -->
     <!--
   <script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>  -->
@@ -67,7 +67,7 @@
     <nav class="top-bar">
       <ul>
         <li class="name">
-          <h1><a href="#">WebHelp: tu plataforma de Ayuda</a></h1>
+          <h1><a href="#">WebHelp, tu plataforma de Ayuda</a></h1>
         </li>
         <li class="toggle-topbar"><br />
         </li>
@@ -127,7 +127,7 @@
             	
                 <br />
                 <br />
-              <a class="button" id="reg" >Registrar</a>
+              <a class="button" id="reg" >Registrar Cambios</a>
             </div>	           
             </form>
           </div>
@@ -346,7 +346,6 @@
           });
 
       });
-        
     </script>
   </body>
 </html>

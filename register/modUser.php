@@ -1,12 +1,9 @@
 <?php 
   session_start();
   if(!empty($_SESSION['name']))
-  {
     $name = $_SESSION["name"];
-  }else
-  {
-    
-  }
+  else
+    require '../clases/logout.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

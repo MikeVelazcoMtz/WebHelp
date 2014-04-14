@@ -21,8 +21,26 @@
 		function regUser($nombre, $paterno, $materno, $user, $pass, $address, $tel, $mail, $type)
 		{
 			$qry  = "INSERT INTO usuario ";
-			$qry .= " (`nombre`,`ap_pat`,`ap_mat`,`usuario`,`pass`,`direccion`,`telefono`,`e_mail`,`tipo_usuario`)"; 
-			$qry .= " VALUES('$nombre', '$paterno', '$materno', '$user', '$pass', '$address', '$tel', '$mail', '$type');";
+			$qry .= " (`nombre`, "; 
+			$qry .= "`ap_pat`, ";
+			$qry .= "`ap_mat` ,";
+			$qry .= "`usuario`, ";
+			$qry .= "`pass`, ";
+			$qry .= "`direccion`, ";
+			$qry .= "`telefono`, ";
+			$qry .= "`e_mail`, ";
+			$qry .= "`tipo_usuario`) ";
+			$qry .= "VALUES ";
+			$qry .= "('" . $nombre . "', ";
+			$qry .= " '" . $paterno . "', ";
+			$qry .= "'" . $materno . "', ";
+			$qry .= "'" . $user . "', ";
+			$qry .= "'" . $pass . "', ";
+			$qry .= "'" . $address . "', ";
+			$qry .= "'" . $tel . "', ";
+			$qry .= "'" . $mail . "', ";
+			$qry .= "'" . $type . "');";
+
 			$result = $this->consulta($qry);
 			return $result;
 		}

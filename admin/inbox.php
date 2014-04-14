@@ -19,6 +19,9 @@
       { 
         echo "<tr>";
         echo "  <td>";
+        echo $dataList[$i]['regid'];
+        echo "  </td>";
+        echo "  <td>";
         echo $dataList[$i]['usuarioid'];
         echo "  </td>";
         echo "  <td>";
@@ -28,7 +31,7 @@
         echo "<a data-comment='" . $dataList[$i]['comentario'] . "' data-regid='" . $dataList[$i]['regid'] . "'>comentario</a>" ;
         echo "  </td>";
         echo "  <td>";
-        echo generateSelect($dataList[$i]['estatus']);
+        echo generateSelect($dataList[$i]['estatus'], $dataList[$i]['regid']);
         echo "  </td>";
         echo "<tr>";
       } 
@@ -43,41 +46,41 @@
     }
   }
 
-  function generateSelect($status)
+  function generateSelect($status, $regid)
   {
-    echo "<select>";
+    echo "<select  data-regid='" . $regid . "'>";
       switch ($status) 
       {
         case 0:
-          echo "<option selected='selected'>";
+          echo "<option selected='selected' value='0'>";
           echo "No leido";
           echo "</option>";
-          echo "<option>";
+          echo "<option value='1'>";
           echo "Leido";
           echo "</option>";
-          echo "<option>";
+          echo "<option value='2'>";
           echo "Cancelado";
           echo "</option>";
           break;
         case 1:
-          echo "<option>";
+          echo "<option value='0'>";
           echo "No leido";
-          echo "</option>";
+          echo "</option value='1'>";
           echo "<option selected='selected'>";
           echo "Leido";
           echo "</option>";
-          echo "<option>";
+          echo "<option value='2'>";
           echo "Cancelado";
           echo "</option>";
           break;
         case 2:
-          echo "<option>";
+          echo "<option value='0'>";
           echo "No leido";
           echo "</option>";
-          echo "<option>";
+          echo "<option value='1'>";
           echo "Leido";
           echo "</option>";
-          echo "<option selected='selected'>";
+          echo "<option selected='selected' value='2'>";
           echo "Cancelado";
           echo "</option>";
           break;
@@ -151,6 +154,7 @@
           	<table class="responsive">
       				<thead>
       					<tr>
+                  <th>ID</th>
       						<th>Usuario</th>
       						<th>Fecha</th>
       						<th>Comentario</th>
@@ -189,6 +193,19 @@
               $("#title").text( "Comentario #" + $(this).data().regid );
               $("#comment").text( $(this).data().comment );
               $("#myModal").reveal();
+            }
+          });
+          $("select").change(function(event) {
+
+            if (confirm("¿Esta seguro que desea cambiar el Registro " + $(this).data().regid + " al estado de " + $(this).val() + "?"))
+            {
+              $.post('changeStatus.php', {status : $(this).val(), id: $(this).data().regid } , function(data, textStatus, xhr) {
+                if(parseInt(data) === 1)
+                  alert("Modificacion satisfactoria.");
+                else
+                  alert("La modificacion ha fallado");
+                location.reload();
+              });
             }
           });
         });	

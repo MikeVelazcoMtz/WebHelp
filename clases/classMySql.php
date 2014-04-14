@@ -1,4 +1,3 @@
-
 <?php 
 	/**
 	* 	Clase de Conexion
@@ -105,26 +104,19 @@
 			else
 				echo 0;
 		}
-		function readComment($commentId,$user)
+
+		function updateComment($status,$commentId)
 		{
 			$connect = $this->conecta();
-			$query = "UPDATE registro SET estatus = 1 WHERE regid = '". $commentId ."';";
+			$query = "UPDATE registro SET estatus =" . $status . " WHERE regid = ". $commentId .";";
 			$result = mysqli_query($connect,$query);
 			if($result)
-				echo "Registro Satisfactorio";
+				echo 1;
 			else
-				echo "El registro del nuevo comentario ha fallado.";
+				echo 0;
 		}
-		function unreadComment($commentId,$user)
-		{
-			$connect = $this->conecta();
-			$query = "UPDATE registro SET estatus = 0 WHERE regid = '". $commentId ."';";
-			$result = mysqli_query($connect,$query);
-			if($result)
-				echo "Registro Satisfactorio";
-			else
-				echo "El registro del nuevo comentario ha fallado.";
-		}
+
+		
 
 		function cancelComment($commentId,$user)
 		{

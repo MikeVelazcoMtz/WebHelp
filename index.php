@@ -119,6 +119,9 @@
         <br />
         <input type="password" placeholder="Contraseña" id="password"/>
         <a href="#" id="login" class="button" >Acceder</a>
+        <br />
+        <br />
+        o puede <a href="register/index.php">Registrarse</a>
       </form>
     </div>
     <div class="row">

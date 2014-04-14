@@ -57,7 +57,6 @@
       <section>
         <ul class="left">
           <li><a href="../index.php" class="a">Inicio</a></li>
-          <li><a href="#" class="a">Captura de Boletines de ayuda</a></li>
           <li>
             <a href="#" class="a">¿Nuevo en WebHelp?</a>
           </li>

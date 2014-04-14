@@ -62,7 +62,7 @@
         <ul class="left">
           <li><a href="" class="a">Inicio</a></li>
           <li><a href="newMessage.php" class="a">Captura de Boletines de ayuda</a></li>
-          <li><a href="#" class="a">¿Nuevo en WebHelp?</a></li>
+          <li><a href="../ayuda/index.html" class="a">¿Nuevo en WebHelp?</a></li>
         </ul>
         <ul class="right">
         	<li class='has-dropdown'>

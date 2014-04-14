@@ -5,7 +5,7 @@
 		$name = $_SESSION["name"];
 	}else
 	{
-		$name = 'Usuario Invalido';
+		require '../clases/logout.php';
 	}
 	function alert($name)
 	{

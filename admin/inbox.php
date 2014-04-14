@@ -8,9 +8,8 @@
     $name = $_SESSION["name"];
   }
   else
-  {
-    require '../clases/logout.php';
-  }
+      require '../clases/logout.php';
+
   function inboxTable($dataList)
   {
     if ($dataList)
@@ -197,7 +196,7 @@
           });
           $("select").change(function(event) {
 
-            if (confirm("¿Esta seguro que desea cambiar el Registro " + $(this).data().regid + " al estado de " + $(this).val() + "?"))
+            if (confirm("¿Esta seguro que desea cambiar el Registro " + $(this).data().regid + " al estado de " + $('option:selected',this).text() + "?"))
             {
               $.post('changeStatus.php', {status : $(this).val(), id: $(this).data().regid } , function(data, textStatus, xhr) {
                 if(parseInt(data) === 1)

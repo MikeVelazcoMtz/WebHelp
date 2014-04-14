@@ -3,5 +3,5 @@
     require '../clases/classMySql.php';
     $mysql = new mySqlx();
     if ( isset($_POST['comentario']) )
-        $mysql->regComment( $_POST['comentario'], $_SESSION['userid'] );
+        $mysql->regComment( htmlentities($_POST['comentario']), $_SESSION['userid'] );
 ?>

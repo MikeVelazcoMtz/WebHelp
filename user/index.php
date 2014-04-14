@@ -53,15 +53,15 @@
     <nav class="top-bar">
       <ul>
         <li class="name">
-          <h1><a href="#">Bienvenido a WebHelp tu plataforma de Ayuda</a></h1>
+          <h1><a href="#">WebHelp, tu plataforma de Ayuda</a></h1>
         </li>
         <li class="toggle-topbar"><br />
         </li>
       </ul>
       <section>
         <ul class="left">
-          <li><a href="../index.php" class="a">Inicio</a></li>
-          <li><a href="#" class="a">Captura de Boletines de ayuda</a></li>
+          <li><a href="" class="a">Inicio</a></li>
+          <li><a href="newMessage.php" class="a">Captura de Boletines de ayuda</a></li>
           <li><a href="#" class="a">¿Nuevo en WebHelp?</a></li>
         </ul>
         <ul class="right">
@@ -92,14 +92,18 @@
     		<h1>Bienvenido <?php echo $name; ?></h1>
     		<hr>
     		<h4 style='text-align:center;' >Eliga la Accion que desee realizar</h4>
-      	<div class="six columns" style="text-align:center;">
+      	<div class="four columns" style="text-align:center;">
   				<h5>Modificar mi Informacion</h5>
           <a href="modInfo.php" id="login" class="button" >Acceder</a>
   			</div>
-    		<div class="six columns" style="text-align:center;">
-    			<h5>Registrar comentario</h5>
+    		<div class="four columns" style="text-align:center;">
+    			<h5>Registro de Boletines de ayuda</h5>
           <a href="newMessage.php" id="login" class="button" >Acceder</a>
     		</div>
+        <div class="four columns" style="text-align:center;">
+          <h5>Mis comentarios</h5>
+          <a href="myComments.php" id="login" class="button" >Acceder</a>
+        </div>
     	</div>
     </div>
     <footer>
@@ -121,28 +125,11 @@
           var num = 0;
           /* jshint ignore:start */
             <?php 
-              alert($name);
+              //alert($name);
             ?>
           /* jshint ignore:end */
         });        
 
     </script>
   </body>
-</html>
-<!DOCTYPE html>
-	<head>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<title>WebHelp - Bienvenido <?php echo $name; ?> </title>
-			<link rel="stylesheet" href="">
-			<script src='../js/jquery.js'></script>
-			<script>
-				$(document).ready(function(){
-					
-				});
-			</script>
-	</head>
-	<body>
-		
-	</body>
 </html>

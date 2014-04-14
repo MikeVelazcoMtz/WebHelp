@@ -145,25 +145,55 @@
 
 		function cancelComment($commentId,$user)
 		{
-			$date = date('Y-m-d');
 			$connect = $this->conecta();
-			$query = "UPDATE registro SET estatus = 2, usuario_can = '". $user ."', fecha_can = '". $date ."'   WHERE regid = '". $commentId ."';";
+			$query = "UPDATE registro SET estatus = 2, usuario_can = '". $user ."', fecha_can = NOW()   WHERE regid = '". $commentId ."';";
 			$result = mysqli_query($connect,$query);
 			if($result)
 			{	
-				echo "Registro Satisfactorio";
+				echo 1;
 			}
 			else
 			{
-				echo "El registro del nuevo comentario ha fallado.";
+				echo 0;
+			}
+		}
+		
+		function dropComment($commentId)
+		{
+			$date = date('Y-m-d');
+			$connect = $this->conecta();
+			$query = "DELETE FROM registro  WHERE regid = '". $commentId ."';";
+			$result = mysqli_query($connect,$query);
+			if($result)
+			{	
+				echo 1;
+			}
+			else
+			{
+				echo 0;
 			}
 		}
 
-		function getComments()
+		function getComments($userid=false)
 		{
-			$result = $this->consulta("SELECT regid,fecha,comentario,(SELECT CONCAT(nombre,' ',ap_pat,' ',ap_mat) FROM usuario u WHERE u.usuarioid = r.usuarioid) AS usuarioid,estatus,usuario_can,fecha_can FROM registro r;");
+			$qry  = "SELECT ";
+			$qry .= "	regid,";
+			$qry .= "	fecha,";
+			$qry .= "	comentario,";
+			$qry .= "	(SELECT CONCAT(nombre,' ',ap_pat,' ',ap_mat) ";
+			$qry .= "		FROM ";
+			$qry .= "			usuario u ";
+			$qry .= "		WHERE ";
+			$qry .= "			u.usuarioid = r.usuarioid) AS usuarioid,";
+			$qry .= "	estatus,";
+			$qry .= "	usuario_can,";
+			$qry .= "	fecha_can ";
+			$qry .= "	FROM";
+			$qry .= " registro r ";
+			$qry .= ($userid != false) ? "WHERE usuarioid = " . $userid . ";" : ";" ;
 			
-			
+			$result = $this->consulta( $qry );
+						
 			if($result->num_rows > 0)
 			{
 				$dataArray = array();

@@ -1,84 +1,89 @@
 <?php // CASOS : 0 = NO LEIDO, 1 = LEIDO, 2= CANCELADO 
   session_start();
-  require '../clases/classMySql.php';
-  $mysql = new mySqlx();
-  $dataArray = $mysql->getComments();
-  	function inboxTable($dataList)
-  	{
-      if ($dataList)
-      {
-        for ($i=0; $i < count($dataList) ; $i++) 
-        { 
-          echo "<tr>";
-          echo "  <td>";
-          echo $dataList[$i]['usuarioid'];
-          echo "  </td>";
-          echo "  <td>";
-          echo $dataList[$i]['fecha'];
-          echo "  </td>";
-          echo "  <td>";
-          generateSelect($dataList[$i]['comentario']);
-          echo "  </td>";
-          echo "  <td>";
-          echo $dataList[$i]['estatus'];
-          echo "  </td>";
-          echo "<tr>";
-        } 
-      }
-      else
-      {
-        echo "<tr>";
-          echo "  <td colspan='4'>";
-          echo "    <h1 style='color:red'>No existe registro de comentarios.</h1>";
-          echo "  </td>";
-          echo "<tr>";
-      }
-  	}
-
-	function generateSelect($status)
-  	{
-		echo "<select class='custom dropdown'>";
-			switch ($status) 
-			{
-				case 0:
-					echo "<option selected='selected'>";
-					echo "No leido";
-					echo "</option>";
-					echo "<option>";
-					echo "Leido";
-					echo "</option>";
-					echo "<option>";
-					echo "Cancelado";
-					echo "</option>";
-					break;
-				case 1:
-					echo "<option>";
-					echo "No leido";
-					echo "</option>";
-					echo "<option selected='selected'>";
-					echo "Leido";
-					echo "</option>";
-					echo "<option>";
-					echo "Cancelado";
-					echo "</option>";
-					break;
-				case 2:
-					echo "<option>";
-					echo "No leido";
-					echo "</option>";
-					echo "<option>";
-					echo "Leido";
-					echo "</option>";
-					echo "<option selected='selected'>";
-					echo "Cancelado";
-					echo "</option>";
-					break;
-			}
-		echo "</select>";
-  	}
-
   if(!empty($_SESSION['name']))
+  {
+    require '../clases/classMySql.php';
+    $mysql = new mySqlx();
+    $dataArray = $mysql->getComments();
     $name = $_SESSION["name"];
+  }
+  else
+  {
+    require '../clases/logout.php';
+  }
+  function inboxTable($dataList)
+  {
+    if ($dataList)
+    {
+      for ($i=0; $i < count($dataList) ; $i++) 
+      { 
+        echo "<tr>";
+        echo "  <td>";
+        echo $dataList[$i]['usuarioid'];
+        echo "  </td>";
+        echo "  <td>";
+        echo $dataList[$i]['fecha'];
+        echo "  </td>";
+        echo "  <td>";
+        echo "<a data-comment='" . $dataList[$i]['comentario'] . "' data-regid='" . $dataList[$i]['regid'] . "'>comentario</a>" ;
+        echo "  </td>";
+        echo "  <td>";
+        echo generateSelect($dataList[$i]['estatus']);
+        echo "  </td>";
+        echo "<tr>";
+      } 
+    }
+    else
+    {
+      echo "<tr>";
+        echo "  <td colspan='4'>";
+        echo "    <h1 style='color:red'>No existe registro de comentarios.</h1>";
+        echo "  </td>";
+        echo "<tr>";
+    }
+  }
+
+  function generateSelect($status)
+  {
+    echo "<select class='custom dropdown'>";
+      switch ($status) 
+      {
+        case 0:
+          echo "<option selected='selected'>";
+          echo "No leido";
+          echo "</option>";
+          echo "<option>";
+          echo "Leido";
+          echo "</option>";
+          echo "<option>";
+          echo "Cancelado";
+          echo "</option>";
+          break;
+        case 1:
+          echo "<option>";
+          echo "No leido";
+          echo "</option>";
+          echo "<option selected='selected'>";
+          echo "Leido";
+          echo "</option>";
+          echo "<option>";
+          echo "Cancelado";
+          echo "</option>";
+          break;
+        case 2:
+          echo "<option>";
+          echo "No leido";
+          echo "</option>";
+          echo "<option>";
+          echo "Leido";
+          echo "</option>";
+          echo "<option selected='selected'>";
+          echo "Cancelado";
+          echo "</option>";
+          break;
+      }
+    echo "</select>";
+  }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -133,26 +138,34 @@
         </ul>
     </nav>
     <!-- TERMINA LA SECCION  DEL MENU -->
+    <!-- Inicia seccion de reveal -->
+      <div id="myModal" class="reveal-modal">
+        <h1 id="title"></h1>
+        <p class="lead" id="comment"></p>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    <!-- termina seccion de reveal -->
     <div class="row">
-        
-        <div id="result" class="twelve columns">
+        <div id="result" class="twelve columns panel">
+          <h1>Comentarios Registrados</h1>
+          <hr />
         	<table class="responsive">
-				<thead>
-					<tr>
-						<th>Usuario</th>
-						<th>Fecha</th>
-						<th>Comentario</th>
-						<th>Estado</th>
-					</tr>
-				</thead>
-    			<tbody>
-    				<?php 
-              if (count($dataArray))
-                inboxTable($dataArray);
-            ?>
-    			</tbody>	
-    		</table>
-		</div>
+    				<thead>
+    					<tr>
+    						<th>Usuario</th>
+    						<th>Fecha</th>
+    						<th>Comentario</th>
+    						<th>Estado</th>
+    					</tr>
+    				</thead>
+      			<tbody>
+      				<?php 
+                if (count($dataArray))
+                  inboxTable($dataArray);
+              ?>
+      			</tbody>	
+    		  </table>
+		    </div>
       </div>
     <footer>
       <hr />
@@ -170,6 +183,14 @@
     </footer>
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
+          $('a').click(function(event) {
+            if ($(this).data().comment)
+            {
+              $("#title").text( "Comentario #" + $(this).data().regid );
+              $("#comment").text( $(this).data().comment );
+              $("#myModal").reveal();
+            }
+          });
         });	
     </script>
   </body>
